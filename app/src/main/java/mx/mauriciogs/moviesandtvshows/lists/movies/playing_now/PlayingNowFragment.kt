@@ -1,6 +1,7 @@
 package mx.mauriciogs.moviesandtvshows.lists.movies.playing_now
 
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.moviesandtvshows.R
@@ -9,6 +10,7 @@ import mx.mauriciogs.moviesandtvshows.common.extensions.snackbar
 import mx.mauriciogs.moviesandtvshows.databinding.FragmentPlayingNowBinding
 import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.OnAirTvAdapter
 import mx.mauriciogs.storage.movies.data.models.Movie
+import mx.mauriciogs.storage.movies.data.models.toMovie
 
 @AndroidEntryPoint
 class PlayingNowFragment: BaseFrag<FragmentPlayingNowBinding>(R.layout.fragment_playing_now) {
@@ -46,6 +48,6 @@ class PlayingNowFragment: BaseFrag<FragmentPlayingNowBinding>(R.layout.fragment_
     }
 
     fun onClickItem(movie: Movie) {
-
+        findNavController().navigate(PlayingNowFragmentDirections.actionPlayingNowFragmentToMovieDetailFragment(movie.toMovie()))
     }
 }

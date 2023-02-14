@@ -1,13 +1,16 @@
 package mx.mauriciogs.moviesandtvshows.lists.movies.popular
 
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import mx.mauriciogs.moviesandtvshows.R
 import mx.mauriciogs.moviesandtvshows.common.BaseFrag
 import mx.mauriciogs.moviesandtvshows.common.extensions.snackbar
 import mx.mauriciogs.moviesandtvshows.databinding.FragmentMostPopularBinding
 import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.PopularTvAdapter
+import mx.mauriciogs.moviesandtvshows.lists.movies.playing_now.PlayingNowFragmentDirections
 import mx.mauriciogs.storage.movies.data.models.Movie
+import mx.mauriciogs.storage.movies.data.models.toMovie
 
 class MostPopularFragment: BaseFrag<FragmentMostPopularBinding>(R.layout.fragment_most_popular) {
 
@@ -44,6 +47,6 @@ class MostPopularFragment: BaseFrag<FragmentMostPopularBinding>(R.layout.fragmen
     }
 
     fun onClickItem(movie: Movie) {
-
+        findNavController().navigate(MostPopularFragmentDirections.actionMostPopularFragmentToMovieDetailFragment(movie.toMovie()))
     }
 }

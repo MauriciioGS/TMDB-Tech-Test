@@ -9,12 +9,46 @@
         android:id="@+id/moviesFragment"
         android:name="mx.mauriciogs.moviesandtvshows.lists.movies.MoviesFragment"
         android:label="MoviesFragment"
-        tools:layout="@layout/fragment_movies"/>
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_playingNowFragment_to_movieDetailFragment"
+            app:destination="@id/mostPopularFragment" />
+        <action
+            android:id="@+id/action_mostPopularFragment_to_movieDetailFragment"
+            app:destination="@id/mostPopularFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tvShowsFragment"
         android:name="mx.mauriciogs.moviesandtvshows.lists.tvshows.TvShowsFragment"
         android:label="TvShowsFragment"
         tools:layout="@layout/fragment_tvshows"/>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="mx.mauriciogs.moviesandtvshows.lists.movies.detail.MovieDetailFragment"
+        android:label="MovieDetailFragment"
+        tools:layout="@layout/fragment_movie_detail">
+        <argument
+            android:name="movieSel"
+            app:argType="mx.mauriciogs.storage.movies.domain.Movie" />
+    </fragment>
+    <fragment
+        android:id="@+id/playingNowFragment"
+        android:name="mx.mauriciogs.moviesandtvshows.lists.movies.playing_now.PlayingNowFragment"
+        android:label="PlayingNowFragment"
+        tools:layout="@layout/fragment_playing_now">
+        <action
+            android:id="@+id/action_playingNowFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mostPopularFragment"
+        android:name="mx.mauriciogs.moviesandtvshows.lists.movies.popular.MostPopularFragment"
+        android:label="MostPopularFragment"
+        tools:layout="@layout/fragment_most_popular">
+        <action
+            android:id="@+id/action_mostPopularFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
 
 
 </navigation>
