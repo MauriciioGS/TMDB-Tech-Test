@@ -104,6 +104,12 @@ dependencies {
      */
     api "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4"
+
+    /*
+        GLide for images
+     */
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    kapt "com.github.bumptech.glide:compiler:4.14.2"
 }
 
 kapt {

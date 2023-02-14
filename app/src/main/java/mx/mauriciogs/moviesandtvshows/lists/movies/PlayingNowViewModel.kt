@@ -1,6 +1,8 @@
 package mx.mauriciogs.moviesandtvshows.lists.movies
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,16 +25,19 @@ class PlayingNowViewModel @Inject constructor(private val moviesUseCase: MoviesU
     private var cursor = 1
     private var moviesList: List<Movie> = emptyList()
 
+    private val _playingNowUiModel = MutableLiveData<PlayingNowUIModel>()
+    val playingNowUiModel : LiveData<PlayingNowUIModel>
+        get() = _playingNowUiModel
+
     fun getPlayingNowMovies() {
+        emitUiState(showProgress = true)
         viewModelScope.launch(coroutineDispatcher.io) {
             Log.d(TAG, "hacer fetch")
             val result = moviesUseCase.fetchPlayingNowMovies(cursor)
             withContext(coroutineDispatcher.main) {
                 when (result) {
                     is Result.Success -> moviesListSuccess(result.data)
-                    is Result.Error -> {
-                        Log.d(TAG, "Error en la petición")
-                    }
+                    is Result.Error -> moviesListError(result.exception)
                 }
             }
         }
@@ -40,18 +45,22 @@ class PlayingNowViewModel @Inject constructor(private val moviesUseCase: MoviesU
 
     private fun moviesListSuccess(responsePlayingNowMovies: ResponseNowPlayingMovies) = responsePlayingNowMovies.run {
         if (results.isEmpty() && moviesList.isEmpty()) {
-            MoviesException.ListMoviesEmptyMessage("Lista Vacía")
-            Log.e(TAG, "Lista vacìa")
+            emitUiState(exception = MoviesException.ListMoviesEmptyMessage("No se encontraron películas"))
         } else {
             moviesList = moviesList + results
             cursor += 1
-            println(moviesList)
+            emitUiState(showSuccess = moviesList)
         }
     }
 
     private fun moviesListError(exception: Exception ) {
         exception.printStackTrace()
+        emitUiState(exception = exception)
+    }
 
+    private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, showSuccess: List<Movie>? = null) {
+        val playingUiModel = PlayingNowUIModel(showProgress, exception, showSuccess)
+        _playingNowUiModel.value = playingUiModel
     }
 }
 

@@ -12,4 +12,5 @@
     <color name="secondary">#FF01b4e4</color>
     <color name="secondary_transp">#2C01B4E4</color>
     <color name="tertiary">#FF90cea1</color>
+    <color name="error">#BA3333</color>
 </resources>
