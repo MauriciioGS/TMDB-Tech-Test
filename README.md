@@ -16,4 +16,4 @@ Añadir api para reproducri video consumiendo el servicio
 
 - Correcta navegación de listados a detalle 
 
-Que abrir al abrir detalle sea correcta la navegación
+Que abrir al abrir detalle sea correcta la navegación. Actualmente se selecciona un item y no se abre el detalle y regresa al listado, al darle nuevamente ya abre el detalle. Esto requiere que desde el gráfico de navegación se coloque bien las acciones y utilizar el nav controller correctamente
