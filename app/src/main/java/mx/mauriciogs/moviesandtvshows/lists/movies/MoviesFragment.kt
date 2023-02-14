@@ -4,7 +4,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import mx.mauriciogs.moviesandtvshows.R
 import mx.mauriciogs.moviesandtvshows.common.BaseFrag
 import mx.mauriciogs.moviesandtvshows.databinding.FragmentMoviesBinding
-import mx.mauriciogs.moviesandtvshows.lists.movies.adapter.VpMoviesAdapter
+import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.VpMoviesAdapter
 
 class MoviesFragment: BaseFrag<FragmentMoviesBinding>(R.layout.fragment_movies) {
 

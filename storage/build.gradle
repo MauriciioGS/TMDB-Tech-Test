@@ -1,10 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
-    id 'dagger.hilt.android.plugin'
-
+    id 'kotlin-kapt'
 }
 
 android {
@@ -38,7 +36,12 @@ dependencies {
         Retrofit and Gson converter
      */
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+}
+
+hilt {
+    enableAggregatingTask = true
 }
 
 kapt {

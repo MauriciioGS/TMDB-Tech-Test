@@ -7,13 +7,14 @@ import mx.mauriciogs.storage.movies.data.models.ResponseNowPlayingMovies
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MoviesApi {
 
     @GET(NOW_PLAYING)
-    suspend fun playingNow(@Path("api_key") apiKey: String, @Path("num_page") page: Int): Response<ResponseNowPlayingMovies>
+    suspend fun playingNow(@Query(value = "api_key") apiKey: String, @Query(value = "page") page: Int): Response<ResponseNowPlayingMovies>
 
     @GET(POPULAR)
-    suspend fun popular(@Path("api_key") apiKey: String, @Path("num_page") page: Int): Response<ResponseMostPopularMovies>
+    suspend fun popular(@Query(value = "api_key") apiKey: String, @Query(value = "page") page: Int): Response<ResponseMostPopularMovies>
 
 }

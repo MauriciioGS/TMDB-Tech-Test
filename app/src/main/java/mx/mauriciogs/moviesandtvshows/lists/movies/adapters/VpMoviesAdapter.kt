@@ -1,4 +1,4 @@
-package mx.mauriciogs.moviesandtvshows.lists.movies.adapter
+package mx.mauriciogs.moviesandtvshows.lists.movies.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
