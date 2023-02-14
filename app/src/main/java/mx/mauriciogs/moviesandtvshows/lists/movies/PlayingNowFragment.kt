@@ -7,7 +7,7 @@ import mx.mauriciogs.moviesandtvshows.R
 import mx.mauriciogs.moviesandtvshows.common.BaseFrag
 import mx.mauriciogs.moviesandtvshows.common.extensions.snackbar
 import mx.mauriciogs.moviesandtvshows.databinding.FragmentPlayingNowBinding
-import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.MovieAdapter
+import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.PlayingNowAdapter
 import mx.mauriciogs.storage.movies.data.models.Movie
 
 @AndroidEntryPoint
@@ -40,7 +40,7 @@ class PlayingNowFragment: BaseFrag<FragmentPlayingNowBinding>(R.layout.fragment_
         with(mBinding) {
             rvMovies.apply {
                 layoutManager = GridLayoutManager(requireActivity(), 2)
-                adapter = MovieAdapter(movies, this@PlayingNowFragment)
+                adapter = PlayingNowAdapter(movies, this@PlayingNowFragment)
             }
         }
     }

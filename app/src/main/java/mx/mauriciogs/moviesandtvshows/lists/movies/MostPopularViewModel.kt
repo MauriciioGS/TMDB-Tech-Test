@@ -6,33 +6,34 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import mx.mauriciogs.storage.common.Result
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import mx.mauriciogs.storage.common.Result
 import mx.mauriciogs.storage.coroutines.CoroutinesDispatchers
 import mx.mauriciogs.storage.movies.data.models.Movie
-import mx.mauriciogs.storage.movies.data.models.ResponseNowPlayingMovies
+import mx.mauriciogs.storage.movies.data.models.ResponseMostPopularMovies
 import mx.mauriciogs.storage.movies.domain.MoviesUseCase
 import mx.mauriciogs.storage.movies.exception.MoviesException
 import javax.inject.Inject
 
-private const val TAG = "PLAYING_NOW_VM"
+private const val TAG = "MOST_POPULAR_VM"
 
 @HiltViewModel
-class PlayingNowViewModel @Inject constructor(private val moviesUseCase: MoviesUseCase,
-                                              private val coroutineDispatcher: CoroutinesDispatchers): ViewModel() {
+class MostPopularViewModel @Inject constructor(private val moviesUseCase: MoviesUseCase,
+                                               private val coroutineDispatcher: CoroutinesDispatchers) : ViewModel() {
 
     private var cursor = 1
     private var moviesList: List<Movie> = emptyList()
 
-    private val _playingNowUiModel = MutableLiveData<PlayingNowUIModel>()
-    val playingNowUiModel : LiveData<PlayingNowUIModel>
-        get() = _playingNowUiModel
+    private val _mostPopularUiModel = MutableLiveData<MostPopularUIModel>()
+    val mostPopularUiModel : LiveData<MostPopularUIModel>
+        get() = _mostPopularUiModel
 
-    fun getPlayingNowMovies() {
+    fun getMostPopularMovies() {
         emitUiState(showProgress = true)
         viewModelScope.launch(coroutineDispatcher.io) {
-            val result = moviesUseCase.fetchPlayingNowMovies(cursor)
+            Log.d(TAG, "hacer fetch")
+            val result = moviesUseCase.fetchMostPopularMovies(cursor)
             withContext(coroutineDispatcher.main) {
                 when (result) {
                     is Result.Success -> moviesListSuccess(result.data)
@@ -42,7 +43,7 @@ class PlayingNowViewModel @Inject constructor(private val moviesUseCase: MoviesU
         }
     }
 
-    private fun moviesListSuccess(responsePlayingNowMovies: ResponseNowPlayingMovies) = responsePlayingNowMovies.run {
+    private fun moviesListSuccess(responsePlayingNowMovies: ResponseMostPopularMovies) = responsePlayingNowMovies.run {
         if (results.isEmpty() && moviesList.isEmpty()) {
             emitUiState(exception = MoviesException.ListMoviesEmptyMessage("No se encontraron películas"))
         } else {
@@ -58,8 +59,7 @@ class PlayingNowViewModel @Inject constructor(private val moviesUseCase: MoviesU
     }
 
     private fun emitUiState(showProgress: Boolean = false, exception: Exception? = null, showSuccess: List<Movie>? = null) {
-        val playingUiModel = PlayingNowUIModel(showProgress, exception, showSuccess)
-        _playingNowUiModel.value = playingUiModel
+        val popularUiModel = MostPopularUIModel(showProgress, exception, showSuccess)
+        _mostPopularUiModel.value = popularUiModel
     }
 }
-
