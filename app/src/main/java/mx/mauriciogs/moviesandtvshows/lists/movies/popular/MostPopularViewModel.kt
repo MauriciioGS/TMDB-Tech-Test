@@ -1,4 +1,4 @@
-package mx.mauriciogs.moviesandtvshows.lists.movies
+package mx.mauriciogs.moviesandtvshows.lists.movies.popular
 
 import android.util.Log
 import androidx.lifecycle.LiveData

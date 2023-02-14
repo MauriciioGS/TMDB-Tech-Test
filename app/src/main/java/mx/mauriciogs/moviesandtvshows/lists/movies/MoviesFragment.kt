@@ -5,6 +5,8 @@ import mx.mauriciogs.moviesandtvshows.R
 import mx.mauriciogs.moviesandtvshows.common.BaseFrag
 import mx.mauriciogs.moviesandtvshows.databinding.FragmentMoviesBinding
 import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.VpMoviesAdapter
+import mx.mauriciogs.moviesandtvshows.lists.movies.playing_now.PlayingNowFragment
+import mx.mauriciogs.moviesandtvshows.lists.movies.popular.MostPopularFragment
 
 class MoviesFragment: BaseFrag<FragmentMoviesBinding>(R.layout.fragment_movies) {
 

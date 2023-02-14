@@ -1,29 +1,30 @@
-package mx.mauriciogs.moviesandtvshows.lists.movies
+package mx.mauriciogs.moviesandtvshows.lists.movies.playing_now
 
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import mx.mauriciogs.moviesandtvshows.R
 import mx.mauriciogs.moviesandtvshows.common.BaseFrag
 import mx.mauriciogs.moviesandtvshows.common.extensions.snackbar
-import mx.mauriciogs.moviesandtvshows.databinding.FragmentMostPopularBinding
-import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.MostPopularAdapter
-import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.PlayingNowAdapter
+import mx.mauriciogs.moviesandtvshows.databinding.FragmentPlayingNowBinding
+import mx.mauriciogs.moviesandtvshows.lists.movies.adapters.OnAirTvAdapter
 import mx.mauriciogs.storage.movies.data.models.Movie
 
-class MostPopularFragment: BaseFrag<FragmentMostPopularBinding>(R.layout.fragment_most_popular) {
+@AndroidEntryPoint
+class PlayingNowFragment: BaseFrag<FragmentPlayingNowBinding>(R.layout.fragment_playing_now) {
 
-    private lateinit var mBinding: FragmentMostPopularBinding
+    private lateinit var mBinding: FragmentPlayingNowBinding
 
-    private val mostPopularViewModel: MostPopularViewModel by activityViewModels()
+    private val playingNowViewModel: PlayingNowViewModel by activityViewModels()
 
-    override fun FragmentMostPopularBinding.initialize() {
+    override fun FragmentPlayingNowBinding.initialize() {
         mBinding = this
-        mostPopularViewModel.getMostPopularMovies()
+        playingNowViewModel.getPlayingNowMovies()
         initObservers()
     }
 
     private fun initObservers() {
-        mostPopularViewModel.mostPopularUiModel.observe(viewLifecycleOwner) {
+        playingNowViewModel.playingNowUiModel.observe(viewLifecycleOwner) {
             if (it.showProgress) showProgressDialog() else hideProgressDialog()
             if (it.exception != null) showError(it.exception)
             if (it.showSuccess != null) initUI(it.showSuccess)
@@ -39,7 +40,7 @@ class MostPopularFragment: BaseFrag<FragmentMostPopularBinding>(R.layout.fragmen
         with(mBinding) {
             rvMovies.apply {
                 layoutManager = GridLayoutManager(requireActivity(), 2)
-                adapter = MostPopularAdapter(movies, this@MostPopularFragment)
+                adapter = OnAirTvAdapter(movies, this@PlayingNowFragment)
             }
         }
     }

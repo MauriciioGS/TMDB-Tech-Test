@@ -7,11 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mx.mauriciogs.moviesandtvshows.common.IMAGES_URL
 import mx.mauriciogs.moviesandtvshows.databinding.MovieCardBinding
-import mx.mauriciogs.moviesandtvshows.lists.movies.playing_now.PlayingNowFragment
+import mx.mauriciogs.moviesandtvshows.lists.movies.popular.MostPopularFragment
 import mx.mauriciogs.storage.movies.data.models.Movie
 
-class PlayingNowAdapter(private val movieList: List<Movie>, val frag: Fragment): RecyclerView.Adapter<PlayingNowAdapter.MovieViewHolder>() {
-
+class PopularTvAdapter(private val movieList: List<Movie>, val frag: Fragment): RecyclerView.Adapter<PopularTvAdapter.MovieViewHolder>() {
 
     class MovieViewHolder(val itemBinding: MovieCardBinding): RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(movie: Movie) {
@@ -20,7 +19,7 @@ class PlayingNowAdapter(private val movieList: List<Movie>, val frag: Fragment):
                 .centerCrop()
                 .into(itemBinding.ivPoster)
             itemBinding.tvTitle.text = movie.title
-            itemBinding.tvOverview.text = "Idioma: ${movie.original_language}"
+            itemBinding.tvOverview.text = "Popularidad: ${movie.popularity}"
             itemBinding.tvReleaseDate.text = movie.release_date
         }
     }
@@ -33,7 +32,7 @@ class PlayingNowAdapter(private val movieList: List<Movie>, val frag: Fragment):
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            if(frag is PlayingNowFragment) frag.onClickItem(movieList[position])
+            if(frag is MostPopularFragment) frag.onClickItem(movieList[position])
         }
         holder.bind(movieList[position])
     }

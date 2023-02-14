@@ -1,4 +1,4 @@
-package mx.mauriciogs.moviesandtvshows.lists.movies
+package mx.mauriciogs.moviesandtvshows.lists.movies.popular
 
 import mx.mauriciogs.storage.movies.data.models.Movie
 

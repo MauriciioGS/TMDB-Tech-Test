@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import mx.mauriciogs.moviesandtvshows.common.IMAGES_URL
 import mx.mauriciogs.moviesandtvshows.databinding.MovieCardBinding
-import mx.mauriciogs.moviesandtvshows.lists.movies.MostPopularFragment
-import mx.mauriciogs.moviesandtvshows.lists.movies.PlayingNowFragment
+import mx.mauriciogs.moviesandtvshows.lists.movies.popular.MostPopularFragment
 import mx.mauriciogs.storage.movies.data.models.Movie
 
 class MostPopularAdapter(private val movieList: List<Movie>, val frag: Fragment): RecyclerView.Adapter<MostPopularAdapter.MovieViewHolder>() {

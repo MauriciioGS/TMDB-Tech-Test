@@ -10,7 +10,7 @@ import mx.mauriciogs.moviesandtvshows.databinding.MovieCardBinding
 import mx.mauriciogs.moviesandtvshows.lists.movies.playing_now.PlayingNowFragment
 import mx.mauriciogs.storage.movies.data.models.Movie
 
-class PlayingNowAdapter(private val movieList: List<Movie>, val frag: Fragment): RecyclerView.Adapter<PlayingNowAdapter.MovieViewHolder>() {
+class OnAirTvAdapter(private val movieList: List<Movie>, val frag: Fragment): RecyclerView.Adapter<OnAirTvAdapter.MovieViewHolder>() {
 
 
     class MovieViewHolder(val itemBinding: MovieCardBinding): RecyclerView.ViewHolder(itemBinding.root) {
