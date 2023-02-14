@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Movies &amp; TVShows</string>
+    <string name="menu_item_movies">Películas</string>
+    <string name="menu_item_tv_shows">Series</string>
+    <string name="text_playing_now">En cartelera</string>
+    <string name="text_most_popular">Más Populares</string>
+    <string name="text_playing_now_tv">En emisión</string>
+    <string name="text_most_popular_tv">Más Populares</string>
+</resources>
